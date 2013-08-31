@@ -85,8 +85,10 @@ public class DiamondDetectorListener implements Listener
             if(blockMaterial == Material.DIAMOND_ORE)
             {
                 player.sendMessage("Il y'a du diaman a " + String.valueOf(z) + " blocks de toi");
-                player.getInventory().removeItem(new ItemStack(Material.REDSTONE, 10));
             }
         }
+        
+        player.getInventory().removeItem(new ItemStack(Material.REDSTONE, 5));
+        player.updateInventory();
     }
 }
