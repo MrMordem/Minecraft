@@ -34,34 +34,41 @@ public class DiamondDetectorListener implements Listener
         
         World world = player.getWorld();
         
-        if(act == Action.RIGHT_CLICK_BLOCK & (block.getType() != Material.AIR || block.getType() != null))
+        try
         {
-            if(item.getTypeId() == 278 & player.getInventory().contains(331))
+            if(act == Action.RIGHT_CLICK_BLOCK & block.getType() != Material.AIR & block != null)
             {
-                float yaw = player.getLocation().getYaw() / 90;
-                yaw = (float)Math.round(yaw);
+                if(item.getTypeId() == 278 & player.getInventory().contains(331))
+                {
+                    float yaw = player.getLocation().getYaw() / 90;
+                    yaw = (float)Math.round(yaw);
                 
-                if(yaw == -4 || yaw == 0 || yaw == 4) 
-                {
-                    CheckBlock(0, 1, world, player, block);
+                    if(yaw == -4 || yaw == 0 || yaw == 4) 
+                    {
+                        CheckBlock(0, 1, world, player, block);
+                    }
+                    if(yaw == 3 || yaw == -1)
+                    {
+                        CheckBlock(1, 0, world, player, block);
+                    }
+                    if (yaw == -2 || yaw == 2)
+                    {
+                        CheckBlock(0, -1, world, player, block);
+                    }
+                    if (yaw == -3 || yaw == 1)
+                    {
+                        CheckBlock(-1, 0, world, player, block);
+                    }
                 }
-                if(yaw == 3 || yaw == -1)
+                else
                 {
-                    CheckBlock(1, 0, world, player, block);
-                }
-                if (yaw == -2 || yaw == 2)
-                {
-                    CheckBlock(0, -1, world, player, block);
-                }
-                if (yaw == -3 || yaw == 1)
-                {
-                    CheckBlock(-1, 0, world, player, block);
+                    player.sendMessage("Tu n'as pas le matos requis coco !!!");
                 }
             }
-            else
-            {
-                player.sendMessage("Tu n'as pas le matos requis coco !!!");
-            }
+        }
+        catch(NullPointerException e)
+        {
+            //
         }
     }
     
@@ -78,6 +85,7 @@ public class DiamondDetectorListener implements Listener
             if(blockMaterial == Material.DIAMOND_ORE)
             {
                 player.sendMessage("Il y'a du diaman a " + String.valueOf(z) + " blocks de toi");
+                player.getInventory().removeItem(new ItemStack(Material.REDSTONE, 10));
             }
         }
     }
