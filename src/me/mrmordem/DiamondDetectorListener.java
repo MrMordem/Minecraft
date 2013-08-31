@@ -39,13 +39,6 @@ public class DiamondDetectorListener implements Listener
         
         World world = player.getWorld();
         
-        if(block.getType() != Material.AIR)
-        {
-            int blockClickLocX = block.getLocation().getBlockX();
-            int blockClickLocY = block.getLocation().getBlockY();
-            int blockClickLocZ = block.getLocation().getBlockZ();
-        }
-        
         if(act == Action.RIGHT_CLICK_BLOCK & (block.getType() != Material.AIR || block.getType() != null))
         {
             if(item.getTypeId() == 278 & player.getInventory().contains(331))
