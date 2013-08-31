@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package me.mrmordem;
 
 import org.bukkit.Material;
@@ -43,8 +38,6 @@ public class DiamondDetectorListener implements Listener
         {
             if(item.getTypeId() == 278 & player.getInventory().contains(331))
             {
-                int dirInt = 0;
-                
                 float yaw = player.getLocation().getYaw() / 90;
                 yaw = (float)Math.round(yaw);
                 
@@ -76,11 +69,6 @@ public class DiamondDetectorListener implements Listener
     {
         Material blockMaterial;
         Block blockToCheck = block;
-        
-        /*if(blockMaterial == Material.DIAMOND_ORE)
-        {
-            player.sendMessage("Mais c'est déjà du diaman !!!!");
-        }*/
         
         for(int z = 1; z < 15; z++)
         {   
