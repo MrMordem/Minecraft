@@ -36,7 +36,8 @@ public class DiamondDetectorListener implements Listener
         
         try
         {
-            if(act == Action.RIGHT_CLICK_BLOCK & block.getType() != Material.AIR & block != null)
+            if(act == Action.RIGHT_CLICK_BLOCK & block.getType() != Material.AIR & block != null
+                    & player.getItemInHand().getTypeId() == 278)
             {
                 if(item.getTypeId() == 278 & player.getInventory().contains(331))
                 {
@@ -86,9 +87,26 @@ public class DiamondDetectorListener implements Listener
             {
                 player.sendMessage("Il y'a du diaman a " + String.valueOf(z) + " blocks de toi");
             }
+            
+            //CheckBlockY(block, world, player);
         }
         
         player.getInventory().removeItem(new ItemStack(Material.REDSTONE, 5));
         player.updateInventory();
+    }
+    
+    private void CheckBlockY(Block currentBlock, World world, Player player)
+    {
+        Block block = currentBlock;
+        int playerY = (int)player.getLocation().getY() * 2;
+        
+        for(int i = 1; i < playerY * 2; i++)
+        {
+            block = world.getBlockAt(block.getX(), playerY - i, block.getZ());
+            if(block.getType() == Material.DIAMOND_ORE)
+            {
+                player.sendMessage("Il y'a aussi du diaman en dessous OU au dessus !!! !!!");
+            }
+        }
     }
 }
